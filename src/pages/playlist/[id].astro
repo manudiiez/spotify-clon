@@ -1,0 +1,68 @@
+---
+import Layout from "@/layout";
+import { allPlaylists, songs } from "@/lib/data";
+import CardPlayButton from "@/components/CardPlayButton";
+import MusicTable from "@/components/MusicTable.astro";
+
+const { id } = Astro.params;
+
+const playlist = allPlaylists.find((playlist) => playlist.id === id);
+const playlistSongs = songs.filter(
+  (song) => song.albumId === playlist?.albumId
+);
+---
+
+<Layout title="Spotify clon">
+  <div
+    class="flex flex-col h-full overflow-x-hidden relative z-40 bg-gradient-to-t from-zinc-900 via-zinc-900/90"
+    transition:name={`playlist ${id} box`}
+  >
+    <header
+      class="flex flex-col mt-12 gap-8 px-4 md:px-6 md:flex-row md:items-end"
+    >
+      <div class="flex justify-center">
+        <picture class="aspect-square w-64 h-64 flex-none md:w-52 md:h-52">
+          <img
+            src={playlist?.cover}
+            alt={`Cover of ${playlist?.title}`}
+            class="object-cover w-full h-full shadow-lg"
+            transition:name={`playlist ${id} image`}
+          />
+        </picture>
+      </div>
+      <div class="flex flex-col justify-between">
+        <h2 class="flex flex-1 items-end">Playlist</h2>
+        <div>
+          <h1
+            class="sm:text-3xl md:text-5xl text-2xl font-bold block text-white"
+          >
+            {playlist?.title}
+            <span transition:name=`playlist ${id} title`></span>
+          </h1>
+        </div>
+        <div class="flex-1 flex items-end">
+          <div class="text-sm text-gray-300 font-normal">
+            <div transition:name=`playlist ${id} artists`>
+              <span>{playlist?.artists.join(", ")}</span>
+            </div>
+            <p class="mt-1">
+              <span class="text-white">{playlistSongs.length} canciones</span>,
+              3 h aproximadamente
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="px-6 pt-6 flex justify-end md:justify-start">
+      <CardPlayButton id={id} size="large" client:load />
+    </div>
+    <section class="p-4 md:p-6 pb-24">
+      <MusicTable songs={playlistSongs} />
+    </section>
+  </div>
+  <div
+    class="absolute z-10 top-0 left-0 h-full w-full bg-gradient-to-t from-zinc-900 via-zinc-900/90"
+    style={{ background: playlist?.color?.dark }}
+  >
+  </div>
+</Layout>

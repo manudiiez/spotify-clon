@@ -1,0 +1,31 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": "C:/Users/Manuel/Desktop/manudiiez_programacion/Proyectos/Clon Spotify/spotify-clon-2",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/components": [
+        "src/components/*"
+      ],
+      "@/icons": [
+        "src/icons/*"
+      ],
+      "@/lib": [
+        "src/lib/*"
+      ],
+      "@/layout": [
+        "src/layouts/Layout.astro"
+      ],
+      "@/utils": [
+        "src/utils/*"
+      ],
+      "@/styles": [
+        "src/styles/styles.css"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

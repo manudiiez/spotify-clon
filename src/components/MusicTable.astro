@@ -1,0 +1,99 @@
+---
+import { type Song } from "@/lib/data";
+import Time from "@/icons/Time.astro";
+import SongPlayButton from "./SongPlayButton";
+import SongPlayItem from "./SongPlayItem";
+import More from "@/icons/More.astro";
+interface Props {
+  songs: Song[];
+}
+
+const { songs } = Astro.props;
+---
+
+<table
+  class="md:table hidden table-auto text-left min-w-full divide-y divide-gray-500/50"
+>
+  <thead class="">
+    <tr class="text-zinc-400 text-sm">
+      <th class="px-4 py-2 font-light">#</th>
+      <th class="px-4 py-2 font-light">Titulo</th>
+      <th class="px-4 py-2 font-light">Album</th>
+      <th class="px-4 py-2 font-light"><Time /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="h-[16px]"></tr>
+    {
+      songs.map((song, index) => (
+        <tr class="group text-gray-300 text-sm font-light hover:bg-white/10 overflow-hidden transition duration-300">
+          <th class="ps-4 py-2 rounded-tl-lg rounded-bl-lg w-5">
+            <span class="flex group-hover:hidden">{index + 1}</span>
+            <SongPlayItem client:load id={song.id} albumId={song.albumId}>
+              <SongPlayButton
+                className="hidden group-hover:block"
+                id={song.id}
+                albumId={song.albumId}
+                client:load
+              />
+            </SongPlayItem>
+          </th>
+          <th class="px-4 py-2 flex gap-3">
+            <picture>
+              <img
+                src={song.image}
+                alt={song.title}
+                class="w-11 h-11 rounded-md"
+              />
+            </picture>
+            <div class="flex flex-col ">
+              <h3 class="text-white text-base font-normal">{song.title}</h3>
+              <span class="font-light">{song.artists.join(", ")}</span>
+            </div>
+          </th>
+          <th class="px-4 py-2 font-normal">{song.album}</th>
+          <th class="px-4 py-2 rounded-tr-lg rounded-br-lg">{song.duration}</th>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<ul class="md:hidden list-none flex flex-col gap-3">
+  {
+    songs.map((song, index) => (
+      <li class="w-full playlist-item relative">
+        <SongPlayItem client:load id={song.id} albumId={song.albumId}>
+          <div class="flex items-center gap-3 w-full">
+            <picture class="h-12 w-12 flex-none">
+              <img
+                src={song.image}
+                alt={`Cover of ${song.title} by ${song.artists.join(", ")}`}
+                class="object-cover w-full h-full"
+              />
+            </picture>
+
+            <div class="flex flex-auto flex-col truncate">
+              <h4 class="text-white text-left text-sm group-hover:text-green-500">
+                {song.title}
+              </h4>
+              <span class="text-xs text-left text-gray-400">
+                {song.artists.join(", ")}
+              </span>
+            </div>
+          </div>
+        </SongPlayItem>
+        <button>
+          <More />
+        </button>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .playlist-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import SearchIcon from "@/icons/Search.astro";
+import MenuItem from "./MenuItem.astro";
+import HomeIcon from "@/icons/Home.astro";
+import LibraryIcon from "@/icons/Library.astro";
+---
+
+<nav class="bg-gradient-to-t from-black to-black/70 py-3">
+  <ul class="w-full grid grid-cols-3">
+    <MenuItem href="/">
+      <HomeIcon />
+       Inicio
+    </MenuItem>
+    <MenuItem href="/">
+      <SearchIcon />
+       Buscar
+    </MenuItem>
+    <MenuItem href="/">
+      <LibraryIcon />
+       Tu Biblioteca
+    </MenuItem>
+  </ul>
+</nav>
