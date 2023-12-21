@@ -1,5 +1,5 @@
-import { Pause, Play } from '@/icons/Controls'
-import { usePlayerStore } from '@/store/playerStore'
+import { Pause, Play } from '../icons/Controls'
+import { usePlayerStore } from '../store/playerStore'
 
 const SongPlayButton = ({ id, albumId, className }) => {
     const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)

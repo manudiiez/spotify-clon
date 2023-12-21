@@ -1,4 +1,4 @@
-import { usePlayerStore } from "@/store/playerStore"
+import { usePlayerStore } from "../store/playerStore"
 
 
 const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)

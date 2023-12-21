@@ -1,5 +1,5 @@
-import { usePlayerStore } from "@/store/playerStore"
-import { saveLastSong } from '@/utils/storage'
+import { usePlayerStore } from "../store/playerStore"
+import { saveLastSong } from '../utils/storage'
 
 const SongPlayItem = ({ children, id, albumId }) => {
 

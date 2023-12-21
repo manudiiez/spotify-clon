@@ -1,4 +1,4 @@
-import { Pause, Play } from "@/icons/Controls"
+import { Pause, Play } from "../icons/Controls"
 
 const PlayerButton = ({ isPlaying, handleClick }) => {
 

@@ -1,6 +1,6 @@
-import { usePlayerStore } from '@/store/playerStore';
-import { Pause, Play } from '@/icons/Controls';
-import { saveLastSong } from '@/utils/storage';
+import { usePlayerStore } from '../store/playerStore';
+import { Pause, Play } from '../icons/Controls';
+import { saveLastSong } from '../utils/storage';
 
 const CardPlayButton = ({ id, size = "small" }) => {
     const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)

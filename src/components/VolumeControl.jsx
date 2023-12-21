@@ -1,7 +1,7 @@
 import { useRef } from "react"
-import { usePlayerStore } from "@/store/playerStore"
+import { usePlayerStore } from "../store/playerStore"
 import { Slider } from "./Slider"
-import { Volume, VolumeSilence } from "@/icons/Controls"
+import { Volume, VolumeSilence } from "../icons/Controls"
 
 const VolumeControl = () => {
 
