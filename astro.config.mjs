@@ -7,6 +7,4 @@ import react from "@astrojs/react";
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: 'server',
-  site: 'https://manudiiez.github.io',
-  base: '/spotify-clon',
 });
