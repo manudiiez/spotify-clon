@@ -70,7 +70,9 @@ const Player = () => {
             const src = `/music/${playlist?.id}/0${song.id}.mp3`
             audioRef.current.src = src
             audioRef.current.volume = volume
-            audioRef.current.play()
+            if (isPlaying) {
+                audioRef.current.play()
+            }
         }
     }, [currentMusic])
 
