@@ -4,9 +4,10 @@ import CurrentSong from "./CurrentSong"
 import { NextSong, Pause, Play, PrevSong } from "@/icons/Controls"
 import SongControl from './SongControl'
 import VolumeControl from "./VolumeControl"
-import { getLastSong } from "@/utils/storage"
+import { getLastSong, saveLastSong } from "@/utils/storage"
 import '@/styles'
 import ArrowDown from "@/icons/ArrowDown"
+import { songs } from "@/lib/data"
 
 const Player = () => {
     const { isPlaying, setIsPlaying, currentMusic, volume, setCurrentMusic } = usePlayerStore(state => state)
@@ -78,7 +79,18 @@ const Player = () => {
 
     useEffect(() => {
         const mySong = getLastSong()
-        setCurrentMusic(mySong)
+        if (mySong === null) {
+            fetch(`/api/get-info-playlist.json?id=1`)
+                .then(res => res.json())
+                .then(data => {
+                    const { songs, playlist } = data
+                    setCurrentMusic({ songs, playlist, song: songs[0] })
+                    saveLastSong({ songs, playlist, song: songs[0] })
+                })
+
+        } else {
+            setCurrentMusic(mySong)
+        }
     }, [])
 
     return (
