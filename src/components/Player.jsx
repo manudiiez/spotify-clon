@@ -7,7 +7,6 @@ import VolumeControl from "./VolumeControl"
 import { getLastSong, saveLastSong } from "@/utils/storage"
 import '@/styles'
 import ArrowDown from "@/icons/ArrowDown"
-import { songs } from "@/lib/data"
 
 const Player = () => {
     const { isPlaying, setIsPlaying, currentMusic, volume, setCurrentMusic } = usePlayerStore(state => state)
@@ -37,8 +36,11 @@ const Player = () => {
         const index = currentMusic.songs.findIndex(music => music.id === currentMusic.song.id)
         if (index + 1 >= currentMusic.songs.length) {
             setCurrentMusic({ ...currentMusic, song: currentMusic.songs[0] });
+            saveLastSong({ ...currentMusic, song: currentMusic.songs[0] })
+
         } else {
             setCurrentMusic({ ...currentMusic, song: currentMusic.songs[index + 1] });
+            saveLastSong({ ...currentMusic, song: currentMusic.songs[index + 1] })
         }
         setIsPlaying(true)
 
@@ -48,11 +50,12 @@ const Player = () => {
         const index = currentMusic.songs.findIndex(music => music.id === currentMusic.song.id)
         if (index - 1 >= 0) {
             setCurrentMusic({ ...currentMusic, song: currentMusic.songs[index - 1] });
+            saveLastSong({ ...currentMusic, song: currentMusic.songs[index - 1] })
         } else {
             setCurrentMusic({ ...currentMusic, song: currentMusic.songs[currentMusic.songs.length - 1] });
+            saveLastSong({ ...currentMusic, song: currentMusic.songs[currentMusic.songs.length - 1] })
         }
         setIsPlaying(true)
-
     }
 
     useEffect(() => {
