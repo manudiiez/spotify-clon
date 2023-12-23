@@ -4,9 +4,9 @@ import CurrentSong from "./CurrentSong"
 import { NextSong, Pause, Play, PrevSong } from "../icons/Controls"
 import SongControl from './SongControl'
 import VolumeControl from "./VolumeControl"
-import { getLastSong, saveLastSong } from "@/utils/storage"
-import '@/styles'
-import ArrowDown from "@/icons/ArrowDown"
+import { getLastSong, saveLastSong } from "../utils/storage"
+import '../styles/styles.css'
+import ArrowDown from "../icons/ArrowDown"
 
 const Player = () => {
     const { isPlaying, setIsPlaying, currentMusic, volume, setCurrentMusic } = usePlayerStore(state => state)
